@@ -119,7 +119,7 @@ arduboy.println(AsFlashString(text));
   * Returns `true` on success, `false` on failure
 * `bool insert(const uint8_t & index, const Type & item)`
   * Returns `true` on success, `false` on failure
-​
+
 **Common:**
 * `bool isEmpty(void) const`
 * `bool isFull(void) const`
@@ -138,6 +138,102 @@ arduboy.println(AsFlashString(text));
 * `int8_t indexOfLast(const Type & item)`
   * Returns `-1` if not found
   
+#### Queue
+
+**Specific:**
+* `Type & peek(void)`
+  * Return result is undefined if queue is empty
+* `const Type & peek(void) const`
+  * Return result is undefined if queue is empty
+* `bool enqueue(const Type & item)`
+  * Returns `true` on success, `false` on failure
+* `void dequeue()`
+  * Does nothing if queue is empty
+* `bool removeFirst(const uint8_t & index)`
+  * Returns `true` on success, `false` on failure
+* `bool removeLast(const uint8_t & index)`
+  * Returns `true` on success, `false` on failure
+* `bool removeAt(const uint8_t & index)`
+  * Returns `true` on success, `false` on failure
+* `bool insert(const uint8_t & index, const Type & item)`
+  * Returns `true` on success, `false` on failure
+
+**Common:**
+* `bool isEmpty(void) const`
+* `bool isFull(void) const`
+* `uint8_t getCount(void) const`
+* `uint8_t getCapacity(void) const`
+* `Type * getData(void)`
+* `const Type * getData(void) const`
+* `Type * operator[](const uint8_t & index)`
+* `const Type * operator[](const uint8_t & index) const`
+* `void clear(void)`
+* `void fill(const Type & item)`
+* `bool contains(const Type & item)`
+  * Returns `true` if found, `false` if not found
+* `int8_t indexOfFirst(const Type & item)`
+  * Returns `-1` on failure
+* `int8_t indexOfLast(const Type & item)`
+  * Returns `-1` if not found
+  
+#### Deque
+
+**Specific:**
+* `Type & getFirst(void)`
+  * Return result is undefined if deque is empty
+* `const Type & getFirst(void) const`
+  * Return result is undefined if deque is empty
+* `Type & getLast(void)`
+  * Return result is undefined if deque is empty
+* `const Type & getLast(void) const`
+  * Return result is undefined if deque is empty
+* `bool append(const Type & item)`
+  * Returns `true` on success, `false` on failure
+* `bool prepend(const Type & item)`
+  * Returns `true` on success, `false` on failure
+* `void unappend()`
+  * Does nothing if deque is empty
+* `void unprepend()`
+  * Does nothing if deque is empty
+* `bool removeFirst(const uint8_t & index)`
+  * Returns `true` on success, `false` on failure
+* `bool removeLast(const uint8_t & index)`
+  * Returns `true` on success, `false` on failure
+* `bool removeAt(const uint8_t & index)`
+  * Returns `true` on success, `false` on failure
+* `bool insert(const uint8_t & index, const Type & item)`
+  * Returns `true` on success, `false` on failure
+
+**Common:**
+* `bool isEmpty(void) const`
+* `bool isFull(void) const`
+* `uint8_t getCount(void) const`
+* `uint8_t getCapacity(void) const`
+* `Type * getData(void)`
+* `const Type * getData(void) const`
+* `Type * operator[](const uint8_t & index)`
+* `const Type * operator[](const uint8_t & index) const`
+* `void clear(void)`
+* `void fill(const Type & item)`
+* `bool contains(const Type & item)`
+  * Returns `true` if found, `false` if not found
+* `int8_t indexOfFirst(const Type & item)`
+  * Returns `-1` on failure
+* `int8_t indexOfLast(const Type & item)`
+  * Returns `-1` if not found
+    
+#### Grid
+
+**Specific:**
+* `uint8_t getWidth(void) const`
+* `uint8_t getHeight(void) const`
+* `Type & getItem(const uint8_t & x, const uint8_t & y)`
+* `const Type & getItem(const uint8_t & x, const uint8_t & y) const`
+
+**Common:**
+* `uint8_t getCapacity(void) const` **or** `uint16_t getCapacity(void) const`
+* `void clear(void)`
+* `void fill(const Type & item)`
 
 ---
 
