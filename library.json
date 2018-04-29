@@ -1,0 +1,12 @@
+{
+	"name": "SimpleArduinoUtilities",
+	"version": "0.1",
+	"description": "Very early alpha of a utility library",
+	"keywords": "collection, containers, array, list, stack, queue, dynamic",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Pharap/SimpleArduinoUtilitiesAlpha2"
+	},
+	"license": "Apache License Version 2.0",
+	"frameworks": "arduino"
+}
