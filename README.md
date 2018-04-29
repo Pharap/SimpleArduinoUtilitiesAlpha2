@@ -8,8 +8,6 @@ Very early alpha of a utility library
 ### Data structures
 
 * `Array<Type, Capacity>`
-  * `Type * getData(void)`
-  * `const Type * getData(void) const`  
 * `List<Type, Capacity>`
 * `Stack<Type, Capacity>`
 * `Queue<Type, Capacity>`
