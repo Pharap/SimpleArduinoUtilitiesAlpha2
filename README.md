@@ -5,15 +5,6 @@ Very early alpha of a utility library
 
 ## Super brief temporary documentation
 
-### Data structures
-
-* `Array<Type, Capacity>`
-* `List<Type, Capacity>`
-* `Stack<Type, Capacity>`
-* `Queue<Type, Capacity>`
-* `Deque<Type, Capacity>`
-* `Grid<Type, Width, Height>`
-
 ### Miscelleneous functions
 
 `absT`, `minT`, `maxT` - templated equivalents of the arduino macros.
@@ -47,6 +38,106 @@ arduboy.println(AsFlashString(&text[0]));
 // Option B
 arduboy.println(AsFlashString(text));
 ```
+
+### Data structures
+
+* `Array<Type, Capacity>`
+* `List<Type, Capacity>`
+* `Stack<Type, Capacity>`
+* `Queue<Type, Capacity>`
+* `Deque<Type, Capacity>`
+* `Grid<Type, Width, Height>`
+
+#### Array
+
+**Common:**
+* `bool isEmpty(void) const`
+* `bool isFull(void) const`
+* `uint8_t getCount(void) const`
+* `uint8_t getCapacity(void) const`
+* `Type * getData(void)`
+* `const Type * getData(void) const`
+* `Type * operator[](const uint8_t & index)`
+* `const Type * operator[](const uint8_t & index) const`
+* `void clear(void)`
+* `void fill(const Type & item)`
+* `bool contains(const Type & item)`
+  * Returns `true` if found, `false` if not found
+* `int8_t indexOfFirst(const Type & item)`
+  * Returns `-1` if not found
+* `int8_t indexOfLast(const Type & item)`
+  * Returns `-1`  if not found
+
+#### List
+
+**Specific:**
+* `bool add(const Type & item)`
+  * Returns `true` on success, `false` on failure
+* `bool removeFirst(const Type & item)`
+  * Returns `true` on success, `false` on failure
+* `bool removeLast(const Type & item)`
+  * Returns `true` on success, `false` on failure
+* `bool removeAt(const uint8_t & index)`
+  * Returns `true` on success, `false` on failure
+* `bool insert(const uint8_t & index, const Type & item)`
+  * Returns `true` on success, `false` on failure
+
+**Common:**
+* `bool isEmpty(void) const`
+* `bool isFull(void) const`
+* `uint8_t getCount(void) const`
+* `uint8_t getCapacity(void) const`
+* `Type * getData(void)`
+* `const Type * getData(void) const`
+* `Type * operator[](const uint8_t & index)`
+* `const Type * operator[](const uint8_t & index) const`
+* `void clear(void)`
+* `void fill(const Type & item)`
+* `bool contains(const Type & item)`
+  * Returns `true` if found, `false` if not found
+* `int8_t indexOfFirst(const Type & item)`
+  * Returns `-1` if not found
+* `int8_t indexOfLast(const Type & item)`
+  * Returns `-1` if not found
+  
+#### Stack
+
+**Specific:**
+* `Type & peek(void)`
+  * Return result is undefined if stack is empty
+* `const Type & peek(void) const`
+  * Return result is undefined if stack is empty
+* `bool push(const Type & item)`
+  * Returns `true` on success, `false` on failure
+* `void drop()`
+  * Does nothing if stack is empty
+* `bool removeFirst(const uint8_t & index)`
+  * Returns `true` on success, `false` on failure
+* `bool removeLast(const uint8_t & index)`
+  * Returns `true` on success, `false` on failure
+* `bool removeAt(const uint8_t & index)`
+  * Returns `true` on success, `false` on failure
+* `bool insert(const uint8_t & index, const Type & item)`
+  * Returns `true` on success, `false` on failure
+​
+**Common:**
+* `bool isEmpty(void) const`
+* `bool isFull(void) const`
+* `uint8_t getCount(void) const`
+* `uint8_t getCapacity(void) const`
+* `Type * getData(void)`
+* `const Type * getData(void) const`
+* `Type * operator[](const uint8_t & index)`
+* `const Type * operator[](const uint8_t & index) const`
+* `void clear(void)`
+* `void fill(const Type & item)`
+* `bool contains(const Type & item)`
+  * Returns `true` if found, `false` if not found
+* `int8_t indexOfFirst(const Type & item)`
+  * Returns `-1` on failure
+* `int8_t indexOfLast(const Type & item)`
+  * Returns `-1` if not found
+  
 
 ---
 
