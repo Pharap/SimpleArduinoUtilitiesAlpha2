@@ -19,6 +19,7 @@
 #include <stdint.h>
 
 #include "TypeTraits.h"
+#include "Utility.h"
 
 //
 // Declarations
