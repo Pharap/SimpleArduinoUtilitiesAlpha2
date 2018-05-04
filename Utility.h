@@ -89,13 +89,13 @@ namespace stdlib
 
 	template< typename T > /*constexpr*/ T&& forward(remove_reference_t<T> & t) noexcept
 	{
-		static_cast<T &&>(t);
+		return static_cast<T &&>(t);
 	}
 
 
 	template< typename T > /*constexpr*/ T&& forward(remove_reference_t<T> && t) noexcept
 	{
-		static_cast<T &&>(t);
+		return static_cast<T &&>(t);
 	}
 
 
