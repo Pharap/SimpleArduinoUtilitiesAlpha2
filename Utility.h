@@ -71,7 +71,7 @@ namespace stdlib
 
 	template< typename T > /*constexpr*/ remove_reference_t<T> && move(T && t) noexcept
 	{
-		static_cast<remove_reference_t<T> &&>(t);
+		return static_cast<remove_reference_t<T> &&>(t);
 	}
 
 	template< typename T > void swap(T& a, T& b)
