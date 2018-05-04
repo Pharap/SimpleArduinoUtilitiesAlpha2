@@ -89,13 +89,14 @@ namespace stdlib
 
 	template< typename T > /*constexpr*/ T&& forward(remove_reference_t<T> & t) noexcept
 	{
-		static_cast<T &&>(t);
+		return static_cast<T &&>(t);
 	}
 
 
 	template< typename T > /*constexpr*/ T&& forward(remove_reference_t<T> && t) noexcept
 	{
-		static_cast<T &&>(t);
+		static_assert(!std::is_lvalue_reference<T>::value, "template argument substituting T is an lvalue reference type");
+		return static_cast<T &&>(t);
 	}
 
 
