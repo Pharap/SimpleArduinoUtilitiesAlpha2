@@ -24,10 +24,10 @@
 // Declarations
 //
 
-template< typename Type, uint8_t Capacity >
+template< typename Type, uint8_t capactiy >
 class Deque;
 
-template< typename Type, uint8_t CapacityValue >
+template< typename Type, uint8_t capactiyValue >
 class Deque
 {
 public:
@@ -36,8 +36,8 @@ public:
 	// Constraints
 	//
 
-	static_assert(CapacityValue > 0, "Attempt to create Deque with a capacity less than 1");
-	static_assert(CapacityValue < 128, "Attempt to create Deque with a capacity greater than 127");
+	static_assert(capactiyValue > 0, "Attempt to create Deque with a capacity less than 1");
+	static_assert(capactiyValue < 128, "Attempt to create Deque with a capacity greater than 127");
 
 	//
 	// Type Aliases
@@ -52,10 +52,10 @@ public:
 	// Constants
 	//
 	
-	constexpr static const SizeType Capacity = CapacityValue;
+	constexpr static const SizeType capactiy = capactiyValue;
 	constexpr static const IndexOfType InvalidIndex = -1;
 	constexpr static const IndexType FirstIndex = 0;
-	constexpr static const IndexType LastIndex = Capacity - 1;
+	constexpr static const IndexType LastIndex = capactiy - 1;
 
 private:
 	
@@ -63,7 +63,7 @@ private:
 	// Member Variables
 	//
 	
-	ValueType items[Capacity] = {};
+	ValueType items[capactiy] = {};
 	IndexType next = 0;
 	
 public:
@@ -73,37 +73,37 @@ public:
 	//
 	
 	// O(1)
-	bool isEmpty(void) const noexcept
+	bool isEmpty() const noexcept
 	{
 		return (this->next == FirstIndex);
 	}
 	
 	// O(1)
-	bool isFull(void) const noexcept
+	bool isFull() const noexcept
 	{
 		return (this->next > LastIndex);
 	}
 	
 	// O(1)
-	SizeType getCount(void) const noexcept
+	SizeType getCount() const noexcept
 	{
 		return this->next;
 	}
 	
 	// O(1)
-	constexpr SizeType getCapacity(void) const noexcept
+	constexpr SizeType getCapacity() const noexcept
 	{
-		return Capacity;
+		return capactiy;
 	}
 	
 	// O(1)
-	ValueType * getData(void) noexcept
+	ValueType * getData() noexcept
 	{
 		return &this->items[FirstIndex];
 	}
 	
 	// O(1)
-	const ValueType * getData(void) const noexcept
+	const ValueType * getData() const noexcept
 	{
 		return &this->items[FirstIndex];
 	}
@@ -121,7 +121,7 @@ public:
 	}
 	
 	// O(N)
-	void clear(void);
+	void clear();
 	
 	// O(N)
 	void fill(const ValueType & item);
@@ -142,25 +142,25 @@ public:
 	//
 
 	// O(1)
-	ValueType & getFirst(void)
+	ValueType & getFirst()
 	{
 		return this->items[FirstIndex];
 	}
 
 	// O(1)
-	const ValueType & getFirst(void) const
+	const ValueType & getFirst() const
 	{
 		return this->items[FirstIndex];
 	}
 
 	// O(1)
-	ValueType & getLast(void)
+	ValueType & getLast()
 	{
 		return this->items[this->next];
 	}
 
 	// O(1)
-	const ValueType & getLast(void) const
+	const ValueType & getLast() const
 	{
 		return this->items[this->next];
 	}
@@ -172,10 +172,10 @@ public:
 	bool prepend(const ValueType & item);
 
 	// O(1)
-	void unappend(void);
+	void unappend();
 
 	// O(1)
-	void unprepend(void);
+	void unprepend();
 	
 	// O(N)
 	bool removeFirst(const ValueType & item);
@@ -195,8 +195,8 @@ public:
 //
 
 // O(N)
-template< typename Type, uint8_t Capacity >
-void Deque<Type, Capacity>::clear(void)
+template< typename Type, uint8_t capactiy >
+void Deque<Type, capactiy>::clear()
 {
 	for (IndexType i = 0; i < this->getCount(); ++i)
 		this->items[i].~ValueType();
@@ -204,46 +204,49 @@ void Deque<Type, Capacity>::clear(void)
 }
 
 // O(N)
-template< typename Type, uint8_t Capacity >
-void Deque<Type, Capacity>::fill(const ValueType & item)
+template< typename Type, uint8_t capactiy >
+void Deque<Type, capactiy>::fill(const ValueType & item)
 {
 	for (IndexType i = 0; i < this->getCount(); ++i)
 		this->items[i] = item;
 }
 
 // O(N)
-template< typename Type, uint8_t Capacity >
-bool Deque<Type, Capacity>::contains(const ValueType & item) const
+template< typename Type, uint8_t capactiy >
+bool Deque<Type, capactiy>::contains(const ValueType & item) const
 {
 	for (IndexType i = 0; i < this->getCount(); ++i)
 		if (this->items[i] == item)
 			return true;
+
 	return false;
 }
 
 // O(N)
-template< typename Type, uint8_t Capacity >
-auto Deque<Type, Capacity>::indexOfFirst(const ValueType & item) const -> IndexOfType
+template< typename Type, uint8_t capactiy >
+auto Deque<Type, capactiy>::indexOfFirst(const ValueType & item) const -> IndexOfType
 {
 	for (IndexType i = 0; i < this->getCount(); ++i)
 		if (this->items[i] == item)
 			return i;
+
 	return InvalidIndex;
 }
 
 // O(N)
-template< typename Type, uint8_t Capacity >
-auto Deque<Type, Capacity>::indexOfLast(const ValueType & item) const -> IndexOfType
+template< typename Type, uint8_t capactiy >
+auto Deque<Type, capactiy>::indexOfLast(const ValueType & item) const -> IndexOfType
 {
 	for (IndexType i = this->getCount() - 1; i > 0; --i)
 		if (this->items[i] == item)
 			return i;
+
 	return InvalidIndex;
 }
 
 // O(1)
-template< typename Type, uint8_t Capacity >
-bool Deque<Type, Capacity>::append(const ValueType & item)
+template< typename Type, uint8_t capactiy >
+bool Deque<Type, capactiy>::append(const ValueType & item)
 {
 	if (this->isFull())
 		return false;
@@ -254,8 +257,8 @@ bool Deque<Type, Capacity>::append(const ValueType & item)
 }
 
 // O(1)
-template< typename Type, uint8_t Capacity >
-bool Deque<Type, Capacity>::prepend(const ValueType & item)
+template< typename Type, uint8_t capactiy >
+bool Deque<Type, capactiy>::prepend(const ValueType & item)
 {
 	if (this->isFull())
 		return false;
@@ -263,13 +266,14 @@ bool Deque<Type, Capacity>::prepend(const ValueType & item)
 	++this->next;
 	for (IndexType i = this->next; i > 0; --i)
 			this->items[i] = stdlib::move(this->items[i - 1]);
+
 	this->items[0] = item;
 	return true;
 }
 
 // O(1)
-template< typename Type, uint8_t Capacity >
-void Deque<Type, Capacity>::unappend(void)
+template< typename Type, uint8_t capactiy >
+void Deque<Type, capactiy>::unappend()
 {
 	if (this->isEmpty())
 		return;
@@ -280,8 +284,8 @@ void Deque<Type, Capacity>::unappend(void)
 }
 
 // O(1)
-template< typename Type, uint8_t Capacity >
-void Deque<Type, Capacity>::unprepend(void)
+template< typename Type, uint8_t capactiy >
+void Deque<Type, capactiy>::unprepend()
 {
 	if (this->isEmpty())
 		return;
@@ -289,13 +293,14 @@ void Deque<Type, Capacity>::unprepend(void)
 	--this->next;
 	for (IndexType i = 0; i < this->next; ++i)
 			this->items[i] = stdlib::move(this->items[i + 1]);
+
 	this->items[this->next].~ValueType();
 	return true;
 }
 
 // O(N)
-template< typename Type, uint8_t Capacity >
-bool Deque<Type, Capacity>::removeFirst(const ValueType & item)
+template< typename Type, uint8_t capactiy >
+bool Deque<Type, capactiy>::removeFirst(const ValueType & item)
 {
 	for(IndexType i = 0; i < this->next; ++i)
 		if (this->items[i] == item)
@@ -303,6 +308,7 @@ bool Deque<Type, Capacity>::removeFirst(const ValueType & item)
 			--this->next;
 			for (IndexType j = i; j < this->next; ++j)
 				this->items[j] = stdlib::move(this->items[j + 1]);
+
 			this->items[this->next].~ValueType();
 			return true;
 		}
@@ -310,8 +316,8 @@ bool Deque<Type, Capacity>::removeFirst(const ValueType & item)
 }
 
 // O(N)
-template< typename Type, uint8_t Capacity >
-bool Deque<Type, Capacity>::removeLast(const ValueType & item)
+template< typename Type, uint8_t capactiy >
+bool Deque<Type, capactiy>::removeLast(const ValueType & item)
 {
 	for(IndexType i = this->next - 1; i > 0; --i)
 		if (this->items[i] == item)
@@ -319,6 +325,7 @@ bool Deque<Type, Capacity>::removeLast(const ValueType & item)
 			--this->next;
 			for (IndexType j = i; j < this->next; ++j)
 				this->items[j] = stdlib::move(this->items[j + 1]);
+
 			this->items[this->next].~ValueType();
 			return true;
 		}
@@ -326,8 +333,8 @@ bool Deque<Type, Capacity>::removeLast(const ValueType & item)
 }
 
 // O(N)
-template< typename Type, uint8_t Capacity >
-bool Deque<Type, Capacity>::removeAt(IndexType index)
+template< typename Type, uint8_t capactiy >
+bool Deque<Type, capactiy>::removeAt(IndexType index)
 {
 	if(index >= this->next)
 		return false;
@@ -335,13 +342,14 @@ bool Deque<Type, Capacity>::removeAt(IndexType index)
 	--this->next;
 	for (IndexType i = index; i < this->next; ++i)
 			this->items[i] = stdlib::move(this->items[i + 1]);
+
 	this->items[this->next].~ValueType();
 	return true;
 }
 
 // O(N)
-template< typename Type, uint8_t Capacity >
-bool Deque<Type, Capacity>::insert(IndexType index, const ValueType & item)
+template< typename Type, uint8_t capactiy >
+bool Deque<Type, capactiy>::insert(IndexType index, const ValueType & item)
 {
 	if(index >= this->next)
 		return false;
@@ -352,6 +360,7 @@ bool Deque<Type, Capacity>::insert(IndexType index, const ValueType & item)
 	++this->next;
 	for (IndexType i = index + 1; i < this->next; ++i)
 		this->items[i] = stdlib::move(this->items[i + 1]);
+
 	this->items[index] = item;
 	return true;
 }
@@ -378,7 +387,7 @@ public:
 	// Constants
 	//
 	
-	constexpr static const SizeType Capacity = 0;
+	constexpr static const SizeType capactiy = 0;
 	constexpr static const IndexOfType InvalidIndex = -1;
 	constexpr static const IndexType FirstIndex = InvalidIndex;
 	constexpr static const IndexType LastIndex = InvalidIndex;
@@ -390,37 +399,37 @@ public:
 	//
 	
 	// O(1)
-	constexpr bool isEmpty(void) const
+	constexpr bool isEmpty() const
 	{
 		return true;
 	}
 	
 	// O(1)
-	constexpr bool isFull(void) const noexcept
+	constexpr bool isFull() const noexcept
 	{
 		return true;
 	}
 	
 	// O(1)
-	constexpr SizeType getCount(void) const noexcept
+	constexpr SizeType getCount() const noexcept
 	{
 		return 0;
 	}
 	
 	// O(1)
-	constexpr SizeType getCapacity(void) const noexcept
+	constexpr SizeType getCapacity() const noexcept
 	{
 		return 0;
 	}
 	
 	// O(1)
-	/*constexpr*/ ValueType * getData(void) noexcept
+	/*constexpr*/ ValueType * getData() noexcept
 	{
 		return nullptr;
 	}
 	
 	// O(1)
-	constexpr const ValueType * getData(void) const noexcept
+	constexpr const ValueType * getData() const noexcept
 	{
 		return nullptr;
 	}
@@ -432,7 +441,7 @@ public:
 	constexpr const ValueType & operator [](IndexType index) const = delete;
 	
 	// O(1)
-	constexpr void clear(void) noexcept
+	constexpr void clear() noexcept
 	{
 	}
 	
@@ -455,16 +464,16 @@ public:
 	//
 
 	// O(1)
-	/*constexpr*/ ValueType & getFirst(void) = delete;
+	/*constexpr*/ ValueType & getFirst() = delete;
 
 	// O(1)
-	constexpr const ValueType & getFirst(void) const = delete;
+	constexpr const ValueType & getFirst() const = delete;
 
 	// O(1)
-	/*constexpr*/ ValueType & getLast(void) = delete;
+	/*constexpr*/ ValueType & getLast() = delete;
 	
 	// O(1)
-	constexpr const ValueType & getLast(void) const = delete;
+	constexpr const ValueType & getLast() const = delete;
 
 	// O(1)
 	constexpr bool append(const ValueType & item)
@@ -479,12 +488,12 @@ public:
 	}
 
 	// O(1)
-	constexpr void unappend(void)
+	constexpr void unappend()
 	{
 	}
 
 	// O(1)
-	constexpr void unprepend(void)
+	constexpr void unprepend()
 	{
 	}
 	

@@ -20,8 +20,8 @@
 // absT
 //
 
-template< typename T >
-constexpr T absT(T value)
+template< typename Type >
+constexpr Type absT(Type value)
 {
 	return (value < 0) ? -value : value;
 }
@@ -30,20 +30,20 @@ constexpr T absT(T value)
 // minT
 //
 
-template< typename T >
-constexpr T minT(T left, T right)
+template< typename Type >
+constexpr Type minT(Type left, Type right)
 {
 	return (left < right) ? left : right;
 }
 
-template< typename T >
-constexpr T & minT(T & left, T & right)
+template< typename Type >
+constexpr Type & minT(Type & left, Type & right)
 {
 	return (left < right) ? left : right;
 }
 
-template< typename T >
-constexpr T const & minT(T const & left, T const & right)
+template< typename Type >
+constexpr const Type & minT(const Type & left, const Type & right)
 {
 	return (left < right) ? left : right;
 }
@@ -52,20 +52,20 @@ constexpr T const & minT(T const & left, T const & right)
 // maxT
 //
 
-template< typename T >
-constexpr T maxT(T left, T right)
+template< typename Type >
+constexpr Type maxT(Type left, Type right)
 {
 	return (left > right) ? left : right;
 }
 
-template< typename T >
-constexpr T & maxT(T & left, T & right)
+template< typename Type >
+constexpr Type & maxT(Type & left, Type & right)
 {
 	return (left > right) ? left : right;
 }
 
-template< typename T >
-constexpr T const & maxT(T const & left, T const & right)
+template< typename Type >
+constexpr const Type & maxT(const Type & left, const Type & right)
 {
 	return (left > right) ? left : right;
 }
@@ -74,20 +74,20 @@ constexpr T const & maxT(T const & left, T const & right)
 // clampT
 //
 
-template< typename T >
-constexpr T clampT(T value, T left, T right)
+template< typename Type >
+constexpr Type clampT(Type value, Type left, Type right)
 {
 	return (value < left) ? left : (value > right) ? right : value;
 }
 
-template< typename T >
-constexpr T & clampT(T & value, T & left, T & right)
+template< typename Type >
+constexpr Type & clampT(Type & value, Type & left, Type & right)
 {
 	return (value < left) ? left : (value > right) ? right : value;
 }
 
-template< typename T >
-constexpr T const & clampT(T const & value, T const & left, T const & right)
+template< typename Type >
+constexpr const Type & clampT(const Type & value, const Type & left, const Type & right)
 {
 	return (value < left) ? left : (value > right) ? right : value;
 }

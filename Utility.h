@@ -38,30 +38,39 @@ namespace stdlib
 	//
 	//
 
-	template< typename T > void swap( T& a, T& b );
-	//template< typename T > void swap( T& a, T& b ) noexcept(is_nothrow_move_constructible<T>::value && is_nothrow_move_assignable<T>::value);
+	template< typename Type >
+	void swap(Type & a, Type & b);
+	//template< typename Type > void swap(Type & a, Type & b) noexcept(is_nothrow_move_constructible<Type>::value && is_nothrow_move_assignable<Type>::value);
 
 
-	template< typename T, decltype(sizeof(0)) N > void swap( T (&a)[N], T (&b)[N] ) noexcept(noexcept(swap(*a, *b)));
-	//template< typename T, decltype(sizeof(0)) N > void swap( T& a, T& b ) noexcept(std::is_nothrow_swappable<T>::value);
+	template< typename Type, decltype(sizeof(0)) size >
+	void swap(Type (&a)[size], Type (&b)[size]) noexcept(noexcept(swap(*a, *b)));
+	//template< typename Type, decltype(sizeof(0)) size > void swap(Type & a, Type & b) noexcept(std::is_nothrow_swappable<Type>::value);
 
 
-	template< typename T > /*constexpr*/ remove_reference_t<T> && move( T && t ) noexcept;
+	template< typename Type >
+	constexpr remove_reference_t<Type> && move(Type && object) noexcept;
 
 
-	template< typename T > /*constexpr*/ T&& forward( remove_reference_t<T> & t ) noexcept;
-	template< typename T > /*constexpr*/ T&& forward( remove_reference_t<T> && t ) noexcept;
+	template< typename Type >
+	constexpr Type && forward(remove_reference_t<Type> & object) noexcept;
+
+	template< typename Type >
+	constexpr Type && forward(remove_reference_t<Type> && object) noexcept;
 
 
 	// Since C++17
-	template <typename T> constexpr add_const_t<T> & as_const( T & t ) noexcept;
+	template< typename Type >
+	constexpr add_const_t<Type> & as_const(Type & object) noexcept;
 
 
 	// Since C++17
-	template <typename T> void as_const( const T && ) = delete;
+	template< typename Type >
+	void as_const(const Type &&) = delete;
 
 
-	template<typename T, typename U = T> T exchange(T & obj, U && new_value );
+	template<typename Type, typename U = Type>
+	Type exchange(Type & obj, U && new_value);
 
 	//
 	//
@@ -69,47 +78,54 @@ namespace stdlib
 	//
 	//
 
-	template< typename T > /*constexpr*/ remove_reference_t<T> && move(T && t) noexcept
+	template< typename Type >
+	constexpr remove_reference_t<Type> && move(Type && object) noexcept
 	{
-		return static_cast<remove_reference_t<T> &&>(t);
+		return static_cast<remove_reference_t<Type> &&>(object);
 	}
 
-	template< typename T > void swap(T& a, T& b)
+	template< typename Type >
+	void swap(Type & a, Type & b)
 	{
-		T c = move(a);
+		Type c = move(a);
 		a = move(b);
 		b = move(c);
 	}
 
-	template< typename T, decltype(sizeof(0)) N > void swap(T (&a)[N], T (&b)[N]) noexcept(noexcept(swap(*a, *b)))
+	template< typename Type, decltype(sizeof(0)) size >
+	void swap(Type (&a)[size], Type (&b)[size]) noexcept(noexcept(swap(*a, *b)))
 	{
-		for(decltype(sizeof(0)) i = 0; i < N; ++i)
+		for(decltype(sizeof(0)) i = 0; i < size; ++i)
 			swap(a[i], b[i]);
 	}
 
-	template< typename T > /*constexpr*/ T&& forward(remove_reference_t<T> & t) noexcept
+	template< typename Type >
+	constexpr Type && forward(remove_reference_t<Type> & object) noexcept
 	{
-		return static_cast<T &&>(t);
+		return static_cast<Type &&>(object);
 	}
 
 
-	template< typename T > /*constexpr*/ T&& forward(remove_reference_t<T> && t) noexcept
+	template< typename Type >
+	constexpr Type && forward(remove_reference_t<Type> && object) noexcept
 	{
-		static_assert(!is_lvalue_reference<T>::value, "template argument substituting T is an lvalue reference type");
-		return static_cast<T &&>(t);
+		static_assert(!is_lvalue_reference<Type>::value, "template argument substituting Type is an lvalue reference type");
+		return static_cast<Type &&>(object);
 	}
 
 
-	template <typename T> constexpr add_const_t<T> & as_const(T & t) noexcept
+	template<typename Type>
+	constexpr add_const_t<Type> & as_const(Type & object) noexcept
 	{
-		return t;
+		return object;
 	}
 
 
-	template<typename T, typename U > T exchange(T & obj, U && new_value)
+	template<typename Type, typename ValueType >
+	Type exchange(Type & object, ValueType && new_value)
 	{
-		T old_value = move(obj);
-		obj = forward<U>(new_value);
+		Type old_value = move(object);
+		objetc = forward<ValueType>(new_value);
 		return old_value;
 	}
 

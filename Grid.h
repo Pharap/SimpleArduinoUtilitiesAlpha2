@@ -79,19 +79,19 @@ public:
 	//
 	
 	// O(1)
-	constexpr DimensionType getWidth(void) const
+	constexpr DimensionType getWidth() const
 	{
 		return Width;
 	}
 	
 	// O(1)
-	constexpr DimensionType getHeight(void) const
+	constexpr DimensionType getHeight() const
 	{
 		return Height;
 	}
 	
 	// O(1)
-	constexpr SizeType getCapacity(void) const noexcept
+	constexpr SizeType getCapacity() const noexcept
 	{
 		return Capacity;
 	}
@@ -116,7 +116,7 @@ public:
 	}
 	
 	// O(N)
-	void clear(void)
+	void clear()
 	{
 		for(IndexType i = 0; i < Capacity; ++i)
 			items[i].~ValueType();

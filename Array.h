@@ -22,10 +22,10 @@
 // Declarations
 //
 
-template< typename Type, uint8_t Capacity >
+template< typename Type, uint8_t capactiy >
 class Array;
 
-template< typename Type, uint8_t CapacityValue >
+template< typename Type, uint8_t capactiyValue >
 class Array
 {
 public:
@@ -34,8 +34,8 @@ public:
 	// Constraints
 	//
 
-	static_assert(CapacityValue > 0, "Attempt to create Array with a capacity less than 1");
-	static_assert(CapacityValue < 128, "Attempt to create Array with a capacity greater than 127");
+	static_assert(capactiyValue > 0, "Attempt to create Array with a capacity less than 1");
+	static_assert(capactiyValue < 128, "Attempt to create Array with a capacity greater than 127");
 
 	//
 	// Type Aliases
@@ -50,9 +50,9 @@ public:
 	// Constants
 	//
 	
-	constexpr static const SizeType Capacity = CapacityValue;	
+	constexpr static const SizeType capactiy = capactiyValue;	
 	constexpr static const IndexType FirstIndex = 0;
-	constexpr static const IndexType LastIndex = Capacity - 1;
+	constexpr static const IndexType LastIndex = capactiy - 1;
 	constexpr static const IndexOfType InvalidIndex = -1;
 
 private:
@@ -61,7 +61,7 @@ private:
 	// Member Variables
 	//
 	
-	ValueType items[Capacity] = {};
+	ValueType items[capactiy] = {};
 	
 public:
 
@@ -70,37 +70,37 @@ public:
 	//
 	
 	// O(1)
-	constexpr bool isEmpty(void) const noexcept
+	constexpr bool isEmpty() const noexcept
 	{
 		return false;
 	}
 	
 	// O(1)
-	constexpr bool isFull(void) const noexcept
+	constexpr bool isFull() const noexcept
 	{
 		return true;
 	}
 	
 	// O(1)
-	constexpr SizeType getCount(void) const noexcept
+	constexpr SizeType getCount() const noexcept
 	{
-		return Capacity;
+		return capactiy;
 	}
 	
 	// O(1)
-	constexpr SizeType getCapacity(void) const noexcept
+	constexpr SizeType getCapacity() const noexcept
 	{
-		return Capacity;
+		return capactiy;
 	}
 	
 	// O(1)
-	/*constexpr*/ ValueType * getData(void) noexcept
+	/*constexpr*/ ValueType * getData() noexcept
 	{
 		return &this->items[FirstIndex];
 	}
 	
 	// O(1)
-	constexpr const ValueType * getData(void) const noexcept
+	constexpr const ValueType * getData() const noexcept
 	{
 		return &this->items[FirstIndex];
 	}
@@ -118,7 +118,7 @@ public:
 	}
 	
 	// O(N)
-	void clear(void);
+	void clear();
 	
 	// O(N)
 	void fill(const ValueType & item);
@@ -138,48 +138,51 @@ public:
 //
 
 // O(N)
-template< typename Type, uint8_t Capacity >
-void Array<Type, Capacity>::clear(void)
+template< typename Type, uint8_t capactiy >
+void Array<Type, capactiy>::clear()
 {
 	for (IndexType i = 0; i < this->getCount(); ++i)
 		this->items[i].~ValueType();
 }
 
 // O(N)
-template< typename Type, uint8_t Capacity >
-void Array<Type, Capacity>::fill(const ValueType & item)
+template< typename Type, uint8_t capactiy >
+void Array<Type, capactiy>::fill(const ValueType & item)
 {
 	for (IndexType i = 0; i < this->getCount(); ++i)
 		this->items[i] = item;
 }
 
 // O(N)
-template< typename Type, uint8_t Capacity >
-bool Array<Type, Capacity>::contains(const ValueType & item) const
+template< typename Type, uint8_t capactiy >
+bool Array<Type, capactiy>::contains(const ValueType & item) const
 {
 	for (IndexType i = 0; i < this->getCount(); ++i)
 		if (this->items[i] == item)
 			return true;
+
 	return false;
 }
 
 // O(N)
-template< typename Type, uint8_t Capacity >
-auto Array<Type, Capacity>::indexOfFirst(const ValueType & item) const -> IndexOfType
+template< typename Type, uint8_t capactiy >
+auto Array<Type, capactiy>::indexOfFirst(const ValueType & item) const -> IndexOfType
 {
 	for (IndexType i = 0; i < this->getCount(); ++i)
 		if (this->items[i] == item)
 			return i;
+
 	return InvalidIndex;
 }
 
 // O(N)
-template< typename Type, uint8_t Capacity >
-auto Array<Type, Capacity>::indexOfLast(const ValueType & item) const -> IndexOfType
+template< typename Type, uint8_t capactiy >
+auto Array<Type, capactiy>::indexOfLast(const ValueType & item) const -> IndexOfType
 {
 	for (IndexType i = this->getCount() - 1; i > 0; --i)
 		if (this->items[i] == item)
 			return i;
+
 	return InvalidIndex;
 }
 
@@ -205,7 +208,7 @@ public:
 	// Constants
 	//
 	
-	constexpr static const SizeType Capacity = 0;
+	constexpr static const SizeType capactiy = 0;
 	constexpr static const IndexOfType InvalidIndex = -1;
 	
 public:
@@ -215,37 +218,37 @@ public:
 	//
 	
 	// O(1)
-	constexpr bool isEmpty(void) const noexcept
+	constexpr bool isEmpty() const noexcept
 	{
 		return true;
 	}
 	
 	// O(1)
-	constexpr bool isFull(void) const noexcept
+	constexpr bool isFull() const noexcept
 	{
 		return true;
 	}
 	
 	// O(1)
-	constexpr SizeType getCount(void) const noexcept
+	constexpr SizeType getCount() const noexcept
 	{
 		return 0;
 	}
 	
 	// O(1)
-	constexpr SizeType getCapacity(void) const noexcept
+	constexpr SizeType getCapacity() const noexcept
 	{
 		return 0;
 	}
 	
 	// O(1)
-	/*constexpr*/ ValueType * getData(void) noexcept
+	/*constexpr*/ ValueType * getData() noexcept
 	{
 		return nullptr;
 	}
 	
 	// O(1)
-	constexpr const ValueType * getData(void) const noexcept
+	constexpr const ValueType * getData() const noexcept
 	{
 		return nullptr;
 	}
@@ -257,12 +260,12 @@ public:
 	constexpr const ValueType & operator [](const IndexType & index) const = delete;
 	
 	// O(1)
-	constexpr void clear(void) noexcept
+	constexpr void clear() noexcept
 	{
 	}
 	
 	// O(1)
-	constexpr void fill(void) noexcept
+	constexpr void fill() noexcept
 	{
 	}
 	

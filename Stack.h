@@ -24,10 +24,10 @@
 // Declarations
 //
 
-template< typename Type, uint8_t Capacity, typename Container = Deque<Type, Capacity> >
+template< typename Type, uint8_t capactiy, typename Container = Deque<Type, capactiy> >
 class Stack;
 
-template< typename Type, uint8_t CapacityValue, typename Container >
+template< typename Type, uint8_t capactiyValue, typename Container >
 class Stack
 {
 public:
@@ -36,8 +36,8 @@ public:
 	// Constraints
 	//
 
-	//static_assert(CapacityValue > 0, "Attempt to create Stack with a capacity less than 1");
-	static_assert(CapacityValue < 128, "Attempt to create Stack with a capacity greater than 127");
+	//static_assert(capactiyValue > 0, "Attempt to create Stack with a capacity less than 1");
+	static_assert(capactiyValue < 128, "Attempt to create Stack with a capacity greater than 127");
 
 	//
 	// Type Aliases
@@ -53,7 +53,7 @@ public:
 	// Constants
 	//
 	
-	constexpr static const SizeType Capacity = ContainerType::Capacity;
+	constexpr static const SizeType capactiy = ContainerType::capactiy;
 	constexpr static const IndexOfType InvalidIndex = ContainerType::InvalidIndex;	
 	constexpr static const IndexType FirstIndex = ContainerType::FirstIndex;
 	constexpr static const IndexType LastIndex = ContainerType::LastIndex;
@@ -73,37 +73,37 @@ public:
 	//
 	
 	// O(1)
-	bool isEmpty(void) const noexcept
+	bool isEmpty() const noexcept
 	{
 		return this->container.isEmpty();
 	}
 	
 	// O(1)
-	bool isFull(void) const noexcept
+	bool isFull() const noexcept
 	{
 		return this->container.isFull();
 	}
 	
 	// O(1)
-	SizeType getCount(void) const noexcept
+	SizeType getCount() const noexcept
 	{		
 		return this->container.getCount();
 	}
 	
 	// O(1)
-	constexpr SizeType getCapacity(void) const noexcept
+	constexpr SizeType getCapacity() const noexcept
 	{
 		return this->container.getCapacity();
 	}
 	
 	// O(1)
-	ValueType * getData(void) noexcept
+	ValueType * getData() noexcept
 	{
 		return this->container.getData();
 	}
 	
 	// O(1)
-	const ValueType * getData(void) const noexcept
+	const ValueType * getData() const noexcept
 	{
 		return this->container.getData();
 	}
@@ -121,7 +121,7 @@ public:
 	}
 	
 	// O(N)
-	void clear(void)
+	void clear()
 	{
 		this->container.clear();
 	}
@@ -157,13 +157,13 @@ public:
 	//
 
 	// O(1)
-	ValueType & peek(void)
+	ValueType & peek()
 	{
 		return this->container.getLast();
 	}
 
 	// O(1)
-	const ValueType & peek(void) const
+	const ValueType & peek() const
 	{
 		return this->container.getLast();
 	}
@@ -175,7 +175,7 @@ public:
 	}
 
 	// O(1)
-	void drop(void)
+	void drop()
 	{
 		this->container.unappend();
 	}

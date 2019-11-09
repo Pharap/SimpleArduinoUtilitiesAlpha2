@@ -51,15 +51,15 @@ arduboy.println(AsFlashString(text));
 #### Array
 
 **Common:**
-* `bool isEmpty(void) const`
-* `bool isFull(void) const`
-* `uint8_t getCount(void) const`
-* `uint8_t getCapacity(void) const`
-* `Type * getData(void)`
-* `const Type * getData(void) const`
+* `bool isEmpty() const`
+* `bool isFull() const`
+* `uint8_t getCount() const`
+* `uint8_t getCapacity() const`
+* `Type * getData()`
+* `const Type * getData() const`
 * `Type * operator[](const uint8_t & index)`
 * `const Type * operator[](const uint8_t & index) const`
-* `void clear(void)`
+* `void clear()`
 * `void fill(const Type & item)`
 * `bool contains(const Type & item)`
   * Returns `true` if found, `false` if not found
@@ -83,15 +83,15 @@ arduboy.println(AsFlashString(text));
   * Returns `true` on success, `false` on failure
 
 **Common:**
-* `bool isEmpty(void) const`
-* `bool isFull(void) const`
-* `uint8_t getCount(void) const`
-* `uint8_t getCapacity(void) const`
-* `Type * getData(void)`
-* `const Type * getData(void) const`
+* `bool isEmpty() const`
+* `bool isFull() const`
+* `uint8_t getCount() const`
+* `uint8_t getCapacity() const`
+* `Type * getData()`
+* `const Type * getData() const`
 * `Type * operator[](const uint8_t & index)`
 * `const Type * operator[](const uint8_t & index) const`
-* `void clear(void)`
+* `void clear()`
 * `void fill(const Type & item)`
 * `bool contains(const Type & item)`
   * Returns `true` if found, `false` if not found
@@ -103,9 +103,9 @@ arduboy.println(AsFlashString(text));
 #### Stack
 
 **Specific:**
-* `Type & peek(void)`
+* `Type & peek()`
   * Return result is undefined if stack is empty
-* `const Type & peek(void) const`
+* `const Type & peek() const`
   * Return result is undefined if stack is empty
 * `bool push(const Type & item)`
   * Returns `true` on success, `false` on failure
@@ -121,15 +121,15 @@ arduboy.println(AsFlashString(text));
   * Returns `true` on success, `false` on failure
 
 **Common:**
-* `bool isEmpty(void) const`
-* `bool isFull(void) const`
-* `uint8_t getCount(void) const`
-* `uint8_t getCapacity(void) const`
-* `Type * getData(void)`
-* `const Type * getData(void) const`
+* `bool isEmpty() const`
+* `bool isFull() const`
+* `uint8_t getCount() const`
+* `uint8_t getCapacity() const`
+* `Type * getData()`
+* `const Type * getData() const`
 * `Type * operator[](const uint8_t & index)`
 * `const Type * operator[](const uint8_t & index) const`
-* `void clear(void)`
+* `void clear()`
 * `void fill(const Type & item)`
 * `bool contains(const Type & item)`
   * Returns `true` if found, `false` if not found
@@ -141,9 +141,9 @@ arduboy.println(AsFlashString(text));
 #### Queue
 
 **Specific:**
-* `Type & peek(void)`
+* `Type & peek()`
   * Return result is undefined if queue is empty
-* `const Type & peek(void) const`
+* `const Type & peek() const`
   * Return result is undefined if queue is empty
 * `bool enqueue(const Type & item)`
   * Returns `true` on success, `false` on failure
@@ -159,15 +159,15 @@ arduboy.println(AsFlashString(text));
   * Returns `true` on success, `false` on failure
 
 **Common:**
-* `bool isEmpty(void) const`
-* `bool isFull(void) const`
-* `uint8_t getCount(void) const`
-* `uint8_t getCapacity(void) const`
-* `Type * getData(void)`
-* `const Type * getData(void) const`
+* `bool isEmpty() const`
+* `bool isFull() const`
+* `uint8_t getCount() const`
+* `uint8_t getCapacity() const`
+* `Type * getData()`
+* `const Type * getData() const`
 * `Type * operator[](const uint8_t & index)`
 * `const Type * operator[](const uint8_t & index) const`
-* `void clear(void)`
+* `void clear()`
 * `void fill(const Type & item)`
 * `bool contains(const Type & item)`
   * Returns `true` if found, `false` if not found
@@ -179,13 +179,13 @@ arduboy.println(AsFlashString(text));
 #### Deque
 
 **Specific:**
-* `Type & getFirst(void)`
+* `Type & getFirst()`
   * Return result is undefined if deque is empty
-* `const Type & getFirst(void) const`
+* `const Type & getFirst() const`
   * Return result is undefined if deque is empty
-* `Type & getLast(void)`
+* `Type & getLast()`
   * Return result is undefined if deque is empty
-* `const Type & getLast(void) const`
+* `const Type & getLast() const`
   * Return result is undefined if deque is empty
 * `bool append(const Type & item)`
   * Returns `true` on success, `false` on failure
@@ -205,15 +205,15 @@ arduboy.println(AsFlashString(text));
   * Returns `true` on success, `false` on failure
 
 **Common:**
-* `bool isEmpty(void) const`
-* `bool isFull(void) const`
-* `uint8_t getCount(void) const`
-* `uint8_t getCapacity(void) const`
-* `Type * getData(void)`
-* `const Type * getData(void) const`
+* `bool isEmpty() const`
+* `bool isFull() const`
+* `uint8_t getCount() const`
+* `uint8_t getCapacity() const`
+* `Type * getData()`
+* `const Type * getData() const`
 * `Type * operator[](const uint8_t & index)`
 * `const Type * operator[](const uint8_t & index) const`
-* `void clear(void)`
+* `void clear()`
 * `void fill(const Type & item)`
 * `bool contains(const Type & item)`
   * Returns `true` if found, `false` if not found
@@ -225,14 +225,14 @@ arduboy.println(AsFlashString(text));
 #### Grid
 
 **Specific:**
-* `uint8_t getWidth(void) const`
-* `uint8_t getHeight(void) const`
+* `uint8_t getWidth() const`
+* `uint8_t getHeight() const`
 * `Type & getItem(const uint8_t & x, const uint8_t & y)`
 * `const Type & getItem(const uint8_t & x, const uint8_t & y) const`
 
 **Common:**
-* `uint8_t getCapacity(void) const` **or** `uint16_t getCapacity(void) const`
-* `void clear(void)`
+* `uint8_t getCapacity() const` **or** `uint16_t getCapacity() const`
+* `void clear()`
 * `void fill(const Type & item)`
 
 ---
